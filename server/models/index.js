@@ -26,6 +26,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.document = require("./document.model.js")(sequelize, Sequelize);
+db.lineItem = require("./lineItem.model.js")(sequelize, Sequelize);
+db.orderItem = require("./orderItem.model.js")(sequelize, Sequelize);
+db.vendor = require("./vendor.model.js")(sequelize, Sequelize);
+db.companyCode = require("./companyCode.model.js")(sequelize, Sequelize);
 // db.invoiceLine = require("./invoiceLine.model.js")(sequelize, Sequelize);
 // db.taxLine = require("./taxLine.model.js")(sequelize, Sequelize);
 

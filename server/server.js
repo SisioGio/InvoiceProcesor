@@ -13,9 +13,40 @@ const db = require("./models");
 
 const { DB } = require("./config/db.config");
 
+// Company Code - Vendor
+db.companyCode.hasMany(db.vendor);
+db.vendor.belongsTo(db.companyCode);
+
+// Company Code - Documents
+
+db.companyCode.hasMany(db.document);
+db.document.belongsTo(db.companyCode);
+
+// Vendor - Documents
+
+db.vendor.hasMany(db.document);
+db.document.belongsTo(db.vendor);
+
+// Document - Line-items
+
+db.document.hasMany(db.lineItem);
+db.lineItem.belongsTo(db.document);
+
+//  Vendor - Order Items
+db.vendor.hasMany(db.orderItem);
+db.orderItem.belongsTo(db.vendor);
+
+// Line Item - Order Item
+
+db.orderItem.hasOne(db.lineItem);
+db.lineItem.belongsTo(db.orderItem);
+
 db.sequelize
   .authenticate({ force: true })
   .then(async () => {
+    // Initialize db
+    const init = require("./initializeDb");
+    init.init(db);
     console.log("Sync completed");
   })
   .catch((err) => {

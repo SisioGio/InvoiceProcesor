@@ -7,6 +7,15 @@ module.exports = (sequelize, Sequelize) => {
         enum: ["INVOICE", "CREDIT NOTE"],
         default: "INVOICE",
       },
+      status: {
+        type: Sequelize.STRING,
+        enum: ["NEW", "REJECTED", "POSTED"],
+        defaultValue: "NEW",
+      },
+      comment: {
+        type: Sequelize.STRING,
+      },
+
       documentNo: {
         type: Sequelize.STRING,
       },
@@ -31,10 +40,10 @@ module.exports = (sequelize, Sequelize) => {
           notNull: { msg: "taxAmount is required" },
         },
       },
-      freightCharge: {
+      shippingCost: {
         type: Sequelize.DECIMAL(10, 2),
       },
-      priceRounding: {
+      discount: {
         type: Sequelize.DECIMAL(10, 2),
       },
       totalAmount: {
@@ -48,6 +57,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       deliveryNote: {
+        type: Sequelize.STRING,
+      },
+      pdfFile: {
         type: Sequelize.STRING,
       },
     },
